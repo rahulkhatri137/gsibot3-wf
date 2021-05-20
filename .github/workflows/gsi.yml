@@ -24,8 +24,8 @@ jobs:
               sudo -E apt-get -qq update
               sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex bison ccache openjdk-8-jdk expect aria2
               git config --global user.name "rahulkhatri137"
-              git config --global user.email "rahulkhatri137@gmail.com"
-              git clone --recurse-submodules https://github.com/sinhaaryan03/ErfanGSIs
+              git config --global user.email "secrets.GHMAIL"
+              git clone --recurse-submodules https://github.com/rahulkhatri137/ErfanGSIs
      
        - name: Setup Erfan Tools
          continue-on-error: true
@@ -51,14 +51,12 @@ jobs:
              echo "bot-username=${{ secrets.BOTUN }}" >> "config.prop"
              echo "bot-token=${{ secrets.BOTKEY }}" >> "config.prop"
              echo "bot-master=${{ secrets.USERKEY }}" >> "config.prop"
-             echo "bot-submaster=${{ secrets.SUBKEY }}" >> "config.prop"
              touch sf-creds.config
              echo "#Config file" >> "sf-creds.config"
              echo "#Sun Jan 10 09:00:49 Jer 2021" >> "sf-creds.config"
              echo "bot-sf-user=${{ secrets.SFUSER }}" >> "sf-creds.config"
-             echo "bot-send-announcement=true" >> "sf-creds.config"
+             echo "bot-send-announcement=false" >> "sf-creds.config"
              echo "bot-sf-proj=${{ secrets.PROJECT }}" >> "sf-creds.config"
-             echo "bot-announcement-id=-1001232482562" >> "sf-creds.config"
              echo "bot-sf-pass=${{ secrets.SFPASS }}" >> "sf-creds.config"
              echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
 
