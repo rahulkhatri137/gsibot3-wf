@@ -69,7 +69,7 @@ jobs:
          timeout-minutes: 1
          run: |
               mkdir loop
-              git clone https://github.com/rahulkhatri137/gsibot loop/loop
+              git clone -b sf https://github.com/rahulkhatri137/gsibot loop/loop
               cd loop/loop
               echo "1" >> loop.txt
               git add .
