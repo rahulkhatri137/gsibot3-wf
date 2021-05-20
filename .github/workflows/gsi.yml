@@ -33,7 +33,12 @@ jobs:
          run: |
               sudo chmod -R 0777 ErfanGSIs
               sudo bash ErfanGSIs/setup.sh
-
+       - name: Generate config.prop
+         continue-on-error: true
+         timeout-minutes: 3
+         run: |
+              java -jar Bobo.jar
+         
        - name: Add values
          continue-on-error: true
          timeout-minutes: 1
