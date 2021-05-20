@@ -55,8 +55,9 @@ jobs:
              echo "#Config file" >> "sf-creds.config"
              echo "#Sun Jan 10 09:00:49 Jer 2021" >> "sf-creds.config"
              echo "bot-sf-user=${{ secrets.SFUSER }}" >> "sf-creds.config"
-             echo "bot-send-announcement=false" >> "sf-creds.config"
+             echo "bot-send-announcement=true" >> "sf-creds.config"
              echo "bot-sf-proj=${{ secrets.PROJECT }}" >> "sf-creds.config"
+             echo "bot-announcement-id=-1001484691064" >> "sf-creds.config"
              echo "bot-sf-pass=${{ secrets.SFPASS }}" >> "sf-creds.config"
              echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
 
