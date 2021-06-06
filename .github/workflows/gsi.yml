@@ -30,7 +30,6 @@ jobs:
               git clone --recurse-submodules https://github.com/rahulkhatri137/ErfanGSIs
      
        - name: Setup Erfan Tools
-         continue-on-error: true
          timeout-minutes: 10
          run: |
               sudo chmod -R 0777 ErfanGSIs
@@ -42,7 +41,6 @@ jobs:
               java -jar Bobo.jar
          
        - name: Add values
-         continue-on-error: true
          timeout-minutes: 1
          run: |
              rm -rf configs/config.prop && rm -rf configs/sf-creds.config
@@ -64,14 +62,12 @@ jobs:
              echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
 
        - name: Run Bot
-         continue-on-error: true
          timeout-minutes: 350
          run: |
               sudo chmod -R 0777 *
               sudo java -jar Bobo.jar
          
        - name: +1 
-         continue-on-error: true
          timeout-minutes: 1
          run: |
               mkdir loop
