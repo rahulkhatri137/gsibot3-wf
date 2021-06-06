@@ -63,6 +63,7 @@ jobs:
 
        - name: Run Bot
          timeout-minutes: 350
+         continue-on-error: true
          run: |
               sudo chmod -R 0777 *
               sudo java -jar Bobo.jar
