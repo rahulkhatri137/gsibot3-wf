@@ -1,1 +1,1 @@
-RK_137 GSIb
+RK_137 GSIbot
