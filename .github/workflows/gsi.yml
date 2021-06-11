@@ -68,27 +68,12 @@ jobs:
               sudo chmod -R 0777 *
               sudo java -jar Bobo.jar
          
-       - name: +1 
-         timeout-minutes: 1
-         run: |
-              mkdir loop
-              git clone -b sf https://github.com/rahulkhatri137/gsibotded loop/loop
-              cd loop/loop
-              echo "1" >> loop.txt
-              git add .
-              git commit -m "Loop workflow"
-              
        - name: Loop
          continue-on-error: true
-         timeout-minutes: 5
          run: |
-              cd loop/loop
-              expect -c "
-              spawn git push -f 
-              expect \"Username\"
-              send \"${{ secrets.GHUSER }}\r\"
-              expect \"Password\"
-              send \"${{ secrets.GHPASS }}\r\"
-              expect \"master -> master\"
-              set timeout -10
-              interact"
+          git clone https://${{ secrets.GH_TOKEN }}@github.com/gsibotded loop
+          cd loop || exit 1
+          echo $(( RANDOM - ( RANDOM % RANDOM ) )) > loop.txt
+          git add loop.txt
+          git commit -m "Workflow : Loop at $(date -u +%D-%T%P)"
+          git push -q https://${{ secrets.GH_TOKEN }}@github.com/gsibotded HEAD:sf
