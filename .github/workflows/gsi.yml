@@ -24,52 +24,56 @@ jobs:
               git config --global user.name "rahulkhatri137"
               git config --global user.email "secrets.GHMAIL"
               git clone --recurse-submodules https://github.com/rahulkhatri137/ErfanGSIs
+              aria2c https://master.dl.sourceforge.net/project/gsis137/BoboBot.jar?viasf=1
      
        - name: Setup Erfan Tools
          timeout-minutes: 10
          run: |
               sudo chmod -R 0777 ErfanGSIs
               sudo bash ErfanGSIs/setup.sh
-       - name: Generate config.prop
-         continue-on-error: true
-         timeout-minutes: 3
-         run: |
-              java -jar Bobo.jar
          
        - name: Add values
          timeout-minutes: 1
          run: |
-             rm -rf configs/config.prop && rm -rf configs/sf-creds.config
-             cd configs
-             touch config.prop
-             echo "#Bo³+t config file" >> "config.prop"
-             echo "#Sun Jan 10 09:00:49 Jer 2021" >> "config.prop"
-             echo "bot-username=${{ secrets.BOTUN }}" >> "config.prop"
-             echo "bot-token=${{ secrets.BOTKEY }}" >> "config.prop"
-             echo "bot-master=${{ secrets.USERKEY }}" >> "config.prop"
-             touch sf-creds.config
-             echo "#Config file" >> "sf-creds.config"
-             echo "#Sun Jan 10 09:00:49 Jer 2021" >> "sf-creds.config"
-             echo "bot-sf-user=${{ secrets.SFUSER }}" >> "sf-creds.config"
-             echo "bot-send-announcement=true" >> "sf-creds.config"
-             echo "bot-sf-proj=${{ secrets.PROJECT }}" >> "sf-creds.config"
-             echo "bot-announcement-id=1500771995" >> "sf-creds.config"
-             echo "bot-sf-pass=${{ secrets.SFPASS }}" >> "sf-creds.config"
-             echo "bot-sf-host=frs.sourceforge.net" >> "sf-creds.config"
+              mkdir configs && cd configs
+              touch configs.prop
+              touch allowed2port.json
+              echo "bot-token=${{ secrets.BOTKEY }}" >> configs.prop
+              echo "bot-username=${{ secrets.BOTUN }}" >> configs.prop
+              echo "bot-master=${{ secrets.USERKEY }}" >> configs.prop
+              echo "privateChat=-1001412098793" >> configs.prop
+              echo "requestChat=-1001484691064" >> configs.prop
+              echo "publicChannel=RK137GSI" >> configs.prop
+              echo "bot-sf-pass=${{ secrets.SFPASS }}" >> sf-creds.prop
+              echo "bot-sf-proj=${{ secrets.PROJECT }}" >> sf-creds.prop
+              echo "bot-sf-user=${{ secrets.SFUSER }}" >> sf-creds.prop
+              echo "bot-announcement-id=1500771995" >> sf-creds.prop
+              echo "bot-sf-host=frs.sourceforge.net" >> sf-creds.prop
+              echo "bot-send-announcement=true" >> sf-creds.prop
+              echo '["1292499760","1396522419","1635533429"]' >> allowed2port.json
 
        - name: Run Bot
          timeout-minutes: 350
          continue-on-error: true
          run: |
-              sudo chmod -R 0777 *
-              sudo java -jar Bobo.jar
+              export ABC="$(pwd)"
+              sudo mkdir -p /usr/java/oracle; cd /usr/java/oracle
+              sudo wget 'https://github.com/VeloshGSIs/Bot3-Workflow/releases/download/J16/jdk-16.0.1_linux-x64_bin.tar.gz' -O linux.tar.gz >> /dev/null 2> /dev/null
+              sudo tar -xzvf linux.tar.gz
+              sudo update-alternatives --install "/usr/bin/java" "java" "/usr/java/oracle/jdk-16.0.1/bin/java" 1
+              sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/java/oracle/jdk-16.0.1/bin/javac" 1
+              export JAVA_HOME=/usr/java/oracle/jdk-16.0.1
+              export PATH=$PATH:$JAVA_HOME/bin
+              sudo dpkg --purge --force-depends ca-certificates-java
+              sudo apt-get install ca-certificates-java -y
+              sudo /usr/java/oracle/jdk-16.0.1/bin/java -jar BoboBot.jar
          
        - name: Loop
          continue-on-error: true
          run: |
-          git clone https://${{ secrets.GH_TOKEN }}@github.com/gsibotded loop
+          git clone -b velo https://${{ secrets.GH_TOKEN }}@github.com/gsibotded loop
           cd loop || exit 1
           echo $(( RANDOM - ( RANDOM % RANDOM ) )) > loop.txt
           git add loop.txt
           git commit -m "Workflow : Loop"
-          git push -q https://${{ secrets.GH_TOKEN }}@github.com/gsibotded HEAD:sf
+          git push -q https://${{ secrets.GH_TOKEN }}@github.com/gsibotded HEAD:velo
