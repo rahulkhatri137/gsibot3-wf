@@ -1,6 +1,7 @@
 name: GSIBot automated
  
 on:
+  push:
   workflow_dispatch:
 
 env:
@@ -46,7 +47,7 @@ jobs:
               echo "bot-sf-pass=${{ secrets.SFPASS }}" >> sf-creds.prop
               echo "bot-sf-proj=${{ secrets.PROJECT }}" >> sf-creds.prop
               echo "bot-sf-user=${{ secrets.SFUSER }}" >> sf-creds.prop
-              echo "bot-announcement-id=1500771995" >> sf-creds.prop
+              echo "bot-announcement-id=-1001484691064" >> sf-creds.prop
               echo "bot-sf-host=frs.sourceforge.net" >> sf-creds.prop
               echo "bot-send-announcement=true" >> sf-creds.prop
               echo '["1292499760","1396522419","1635533429"]' >> allowed2port.json
