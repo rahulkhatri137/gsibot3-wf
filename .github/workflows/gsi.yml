@@ -80,9 +80,9 @@ jobs:
        - name: Loop
          continue-on-error: true
          run: |
-          git clone -b velo https://${{ secrets.GH_TOKEN }}@github.com/gsibotded loop
+          git clone -b velo https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded loop
           cd loop || exit 1
           echo $(( RANDOM - ( RANDOM % RANDOM ) )) > loop.txt
           git add loop.txt
           git commit -m "Workflow : Loop"
-          git push -q https://${{ secrets.GH_TOKEN }}@github.com/gsibotded HEAD:velo
+          git push -q https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded HEAD:velo
