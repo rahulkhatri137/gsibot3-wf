@@ -52,7 +52,7 @@ jobs:
               echo "bot-send-announcement=true" >> sf-creds.prop
               echo '["1292499760","1396522419","1635533429"]' >> allowed2port.json
 
-       - name: Run Bot
+       - name: Build Bot
          timeout-minutes: 350
          continue-on-error: true
          run: |
@@ -75,6 +75,11 @@ jobs:
               ./gradlew shadowJar
               cd ../; mv Bot/build/libs/*.jar BoboBot.jar
               rm -rf Bot
+
+       - name: Run Bot
+         timeout-minutes: 350
+         continue-on-error: true
+         run: |
               sudo /usr/java/oracle/jdk-16.0.1/bin/java -jar BoboBot.jar
          
        - name: Loop
