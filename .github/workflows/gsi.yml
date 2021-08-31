@@ -1,4 +1,4 @@
-name: GSIBot automated
+name: GSIBot3 automated
  
 on:
   push:
@@ -8,7 +8,7 @@ env:
   TYPE: build
   TZ: Asia/Manila
 jobs:
-  build:
+  Bot3:
     runs-on: ubuntu-20.04
     timeout-minutes: 525600
 
@@ -85,9 +85,9 @@ jobs:
        - name: Loop
          continue-on-error: true
          run: |
-          git clone -b velo https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded loop
+          git clone -b rk137 https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded loop
           cd loop || exit 1
           echo $(( RANDOM - ( RANDOM % RANDOM ) )) > loop.txt
           git add loop.txt
           git commit -m "Workflow : Loop"
-          git push -q https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded HEAD:velo
+          git push -q https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded HEAD:rk137
