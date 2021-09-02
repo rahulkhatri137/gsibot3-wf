@@ -50,7 +50,7 @@ jobs:
               echo "bot-announcement-id=-1001500771995" >> sf-creds.prop
               echo "bot-sf-host=frs.sourceforge.net" >> sf-creds.prop
               echo "bot-send-announcement=true" >> sf-creds.prop
-              echo '["1292499760","1396522419","1635533429"]' >> allowed2port.json
+              echo '["1292499760","1396522419","1635533429","1057998166"]' >> allowed2port.json
 
        - name: Build Bot
          timeout-minutes: 350
