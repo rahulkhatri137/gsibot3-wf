@@ -6,7 +6,7 @@ on:
 
 env:
   TYPE: build
-  TZ: Asia/Manila
+  TZ: Asia/Kolkata
 jobs:
   Bot3:
     runs-on: ubuntu-20.04
@@ -85,9 +85,9 @@ jobs:
        - name: Loop
          continue-on-error: true
          run: |
-          git clone -b rk137 https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded loop
+          git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} loop
           cd loop || exit 1
           echo $(( RANDOM - ( RANDOM % RANDOM ) )) > loop.txt
           git add loop.txt
           git commit -m "Workflow : Loop"
-          git push -q https://${{ secrets.GH_TOKEN }}@github.com/rahulkhatri137/gsibotded HEAD:rk137
+          git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:rk137
