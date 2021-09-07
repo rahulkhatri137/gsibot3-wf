@@ -40,7 +40,6 @@ jobs:
               sudo chmod -R 0777 XiaoxindadaSGSIs
               sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
               sudo bash XiaoxindadaSGSIs/setup.sh
-              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
               java -version
          
        - name: Add values
