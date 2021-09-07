@@ -24,13 +24,23 @@ jobs:
               sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex bison ccache openjdk-8-jdk expect aria2
               git config --global user.name "rahulkhatri137"
               git config --global user.email "${{ secrets.GHMAIL }}"
-              git clone --recurse-submodules https://github.com/rahulkhatri137/ErfanGSIs
-     
+                   
        - name: Setup Erfan Tools
          timeout-minutes: 10
          run: |
+              git clone --recurse-submodules https://github.com/rahulkhatri137/ErfanGSIs
               sudo chmod -R 0777 ErfanGSIs
               sudo bash ErfanGSIs/setup.sh
+
+       - name: Setup XiaoxindadaSGSIs Tools
+         timeout-minutes: 10
+         run: |
+              git clone --recurse-submodules https://github.com/rahulkhatri137/SGSI-build-tool.git -b 12 XiaoxindadaSGSIs
+              sudo chmod -R 0777 XiaoxindadaSGSIs
+              sudo sed -i 's/USE_MIRROR_FOR_PIP\=true/USE_MIRROR_FOR_PIP\=false/' XiaoxindadaSGSIs/setup.sh
+              sudo bash XiaoxindadaSGSIs/setup.sh
+              sudo apt-get -y --purge remove "adoptopenjdk-11-hotspot"
+              java -version
          
        - name: Add values
          timeout-minutes: 1
