@@ -95,7 +95,7 @@ jobs:
        - name: Loop
          continue-on-error: true
          run: |
-          git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} loop
+          git clone -b sgsi https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} loop
           cd loop || exit 1
           echo $(( RANDOM - ( RANDOM % RANDOM ) )) > loop.txt
           git add loop.txt
