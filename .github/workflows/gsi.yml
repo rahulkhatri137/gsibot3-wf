@@ -46,7 +46,7 @@ jobs:
          run: |
               export JAVA_HOME=/usr/oracle/java/graalvm-ce-java17-22.0.0.2
               export PATH=$PATH:$JAVA_HOME/bin
-              git clone -b main ${{ secrets.HAKA }} Bot; sudo chmod -R 777 Bot ; cd Bot
+              git clone -b w1 ${{ secrets.HAKA }} Bot; sudo chmod -R 777 Bot ; cd Bot
               ./gradlew shadowJar
               cd .. ; mv Bot/hakalle/build/libs/*.jar Bot.jar
               rm -rf Bot ; sudo -E apt-get -qq install openjdk-8-jdk
